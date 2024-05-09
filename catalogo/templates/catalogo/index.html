@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item List</title>
+    <style>
+        /* External CSS for table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Items</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Path</th>
+                <th>Size</th>
+                <th>Type</th>
+                <th>Creation</th>
+                <th>Modification</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr>
+                <td><a href="/catalogo/file/{{ file.numeric_id }}/">{{ file.name }}</a></td>
+                <td>{{file.path}}</td>
+                <td>{{file.size}}</td>
+                <td>{{file.type}}</td>
+                <td>{{file.creation_time}}</td>
+                <td>{{file.modification_time}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
