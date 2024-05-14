@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Details</title>
+    <style>
+        /* External CSS for table styling */
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>File Details</h1>
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Path</td>
+            <td>{{ path }}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ name }}</td>
+        </tr>
+        <tr>
+            <td>Size</td>
+            <td>{{ size }}</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>{{ type }}</td>
+        </tr>
+        <tr>
+            <td>Creation Time</td>
+            <td>{{ creation_time }}</td>
+        </tr>
+        <tr>
+            <td>Modification Time</td>
+            <td>{{ modification_time }}</td>
+        </tr>
+
+        <tr>
+            <td>Persons</td>
+             <td>
+            {% for person in persons %}
+                 <a href="/catalogo/person/{{ person.numeric_id }}/">
+                     {{person.surname}},{{person.name}} {% if not forloop.last %} <br> {% endif %}
+                 </a>
+
+            {% endfor %}</td>
+        </tr>
+
+        <tr>
+            <td>Theme</td>
+             <td>
+            {% for theme in themes %}
+                 <a href="/catalogo/theme/{{ theme.numeric_id }}/">
+                     {{theme.theme}}{% if not forloop.last %} <br> {% endif %}
+                 </a>
+
+            {% endfor %}</td>
+        </tr>
+
+    </table>
+
+
+    <!-- Button to trigger the function -->
+    <button onclick="process_file({{ file_id }})"  id="processed_file">Process file</button>
+
+    {% load static %}
+    <script src="{% static 'functions.js' %}"></script>
+</body>
+</html>

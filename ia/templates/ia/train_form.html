@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Train AI Model</title>
+</head>
+<body>
+  <h1>Train AI Model</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="parameters">Training Parameters:</label>
+    <input type="text" name="parameters" id="parameters">
+    <br>
+    <button type="submit">Train</button>
+  </form>
+</body>
+</html>

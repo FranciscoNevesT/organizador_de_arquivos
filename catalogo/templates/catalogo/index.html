@@ -43,6 +43,9 @@
 <body>
     <h1>List of Items</h1>
 
+    <!-- Button to trigger the function -->
+    <button onclick="update()" id="update">Update</button>
+
     <table>
         <thead>
             <tr>
@@ -67,4 +70,7 @@
             {% endfor %}
         </tbody>
     </table>
+
+    {% load static %}
+    <script src="{% static 'functions.js' %}"></script>
 </body>
