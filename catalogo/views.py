@@ -67,9 +67,11 @@ def process_file(request, file_id):
 
   if type == '.pdf':
     text = readfiles.read_pdf(path)
+
+  elif type == ".txt":
+    text = readfiles.read_txt(path)
   else:
     return index(request)
-
 
   # Save the text to a file
   with open(os.path.join(save_dir, filename), "w", encoding="utf-8") as text_file:

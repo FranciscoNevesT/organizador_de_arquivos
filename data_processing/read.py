@@ -1,5 +1,6 @@
 import PyPDF2
 import nltk
+from unidecode import unidecode
 
 
 class ReadFiles():
@@ -20,6 +21,8 @@ class ReadFiles():
     # Convert text to lowercase
     text = text.lower()
 
+    text = unidecode(text)
+
     # Tokenize the text (split into words)
     tokens = nltk.word_tokenize(text)
 
@@ -27,16 +30,14 @@ class ReadFiles():
 
     text = " ".join(tokens)
 
-    print(text)
-
     return text
 
-  def read_pdf(self,pdf_path):
+  def read_pdf(self, path):
     """
       Reads a PDF file and returns its text content.
 
       Args:
-          pdf_path: The path to the PDF file.
+          path: The path to the PDF file.
 
       Returns:
           A string containing the extracted text from the PDF file.
@@ -44,7 +45,7 @@ class ReadFiles():
 
     try:
       # Open the PDF file in read binary mode
-      with open(pdf_path, 'rb') as pdf_file:
+      with open(path, 'rb') as pdf_file:
         # Create a PDF reader object
         pdf_reader = PyPDF2.PdfReader(pdf_file)
 
@@ -58,5 +59,12 @@ class ReadFiles():
         return self.process_text(text)
 
     except FileNotFoundError:
-      print(f"Error: PDF file not found at {pdf_path}")
+      print(f"Error: PDF file not found at {path}")
       return ""
+
+  def read_txt(self,path):
+    # Open the PDF file in read binary mode
+    with open(path, 'r',encoding='utf-8') as file:
+      text = file.read()
+
+      return self.process_text(text)
