@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Heatmap in JavaScript</title>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
+    <style type="text/css">
+      html, body, #container {
+        width: 100%; margin: 0; padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      const data = {{ data|safe }};
+      anychart.onDocumentReady(function () {
+        // create a heatmap
+        let chart = anychart.heatMap(data);
+        // name the heatmap
+        chart.title("Mean distance for each file");
+        // set the container for the heatmap
+        chart.container("container");
+        // draw the heatmap
+        chart.draw();
+      });
+    </script>
+  </body>
+</html>
